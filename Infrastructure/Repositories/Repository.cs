@@ -1,10 +1,9 @@
 ﻿// MyProject.Infrastructure/Repositories/OrderRepository.cs
 using Microsoft.EntityFrameworkCore;
-using MyProject.Domain.Interfaces;
-using MyProject.Infrastructure.Data;
-using System;
+using Domain.Interfaces;
+using Infrastructure.Data;
 
-namespace MyProject.Infrastructure.Repositories;
+namespace Infrastructure.Repositories;
 
 // Infrastructure/Data/Repository.cs
 public class Repository<T> : IRepository<T> where T : class

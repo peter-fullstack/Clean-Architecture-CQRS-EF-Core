@@ -1,6 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 
-namespace MyProject.Infrastructure.Data;
+namespace Infrastructure.Data;
 
 public class AppDbContext : DbContext
 {

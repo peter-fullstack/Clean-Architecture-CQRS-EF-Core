@@ -1,5 +1,4 @@
-﻿// MyProject.Domain/Interfaces/IOrderRepository.cs
-namespace MyProject.Domain.Interfaces;
+﻿namespace Domain.Interfaces;
 
 public interface IRepository<T> where T : class
 {

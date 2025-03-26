@@ -1,7 +1,7 @@
 ﻿using Domain.Interfaces;
-using MyProject.Domain.Interfaces;
-using MyProject.Infrastructure.Data;
-using MyProject.Infrastructure.Repositories;
+using Infrastructure.Data;
+
+namespace Infrastructure.Repositories;
 
 public class UnitOfWork : IUnitOfWork
 {
