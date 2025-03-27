@@ -37,14 +37,17 @@ ensures all changes succeed or fail together.
 database.
 - From a design perspective there is no direct exposure of DbContext to the other projects (keeps layers clean).
 
-The interfaces for these are defined in the Domain project but implemented in the Infrastrure project which deals with persistence.
-
 ### DDD 
 This has been used at a basic level and in not the full implementation - in most cases the complexity of a complete DDD solution is too much 
 and makes the code base diffictult to work in for developers.
 What has been retained from DDD is the idea of a central and dependency free Domain project that represents the real world objects that the 
 app is working with. The entities in the Domain project encapsulate as much of the domain business logic as possible. 
 There are no dependency in the Domain project to the Application, Insfrastructure or Web projects.
+
+The interfaces are defined in the Domain project because the data and interacting with it is part of the domains business logic and
+interface methods define behavior that the domain uses. 
+Note that the implementations for these interfaces are in the other projects which deals with persistence.
+
 
 Domain project:
 
