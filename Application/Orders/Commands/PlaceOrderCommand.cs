@@ -3,6 +3,8 @@ using MediatR;
 
 namespace Application.Commands;
 
-public record PlaceOrderCommand(
+public record PlaceOrderCommand
+(
     Guid CustomerId,
-    List<OrderItemDto> Items) : IRequest<Guid>;
+    List<OrderItemDetailDto> Items
+) : IRequest<Guid>;
