@@ -7,10 +7,10 @@ Command Query Responsibility Segragation (CQRS) pattern.
 
 Minimal yet structured approach to Clean Architecture with:
 
-✅ CQRS (via MediatR)
-✅ Repository + Unit of Work patterns
-✅ Vertical Slicing by feature
-✅ Minimal APIs for endpoints
+- ✅ CQRS (via MediatR)
+- ✅ Repository + Unit of Work patterns
+- ✅ Vertical Slicing by feature
+- ✅ Minimal APIs for endpoints
 
 
 | Layer          | Components                          | NuGet Packages Used       |
@@ -18,14 +18,7 @@ Minimal yet structured approach to Clean Architecture with:
 | **Web**        | Minimal APIs, DTOs                  | `Microsoft.AspNetCore`    |
 | **Application**| Commands, Queries, Validators       | `MediatR`, `FluentValidation` |
 | **Infrastructure** | EF Core, Repositories           | `Microsoft.EntityFrameworkCore` |
-| **Domain** | Domain entities and business logic  | `` |
-
-## Direction of dependencies
-
-Web --> Application
-Application --> Domain
-Application --> Infrastructure
-Infrastructure --> Domain
+| **Domain** | Domain entities and business logic  | `pure C# and .NET Standard/Core base libraries` |
 
 ### CQRS
 A version of the CQRS pattern has been implemented in the Application project using MediatR and also separating update and query logic in the
@@ -36,15 +29,15 @@ presentation layer.
 ### Generic Repository and Unit of Work
 Though not always necessary in simple projects the repository and unit of work patterns help to abstract the data layer away from the projects 
 that use it. 
-- The key benifit of a generic repository is avoidsing repetitive code across entity-specific repositories while providing common CRUD operations 
+- The key benifit of a generic repository is avoiding repetitive code across entity-specific repositories while providing common CRUD operations 
 (GetById, Add, Update, Delete) for any entity. 
-- The Unit of Work groups multiple database related operations (e.g., updating an Order and deducting inventory) into a single transaction. Which 
+- The Unit of Work groups multiple database related operations (e.g. updating an Order and deducting inventory) into a single transaction. Which 
 ensures all changes succeed or fail together. 
 - It can also reduce the chattiness of the application with regards to its interactions with the
 database.
-- This also means that there is no direct exposure of DbContext to the other projects (keeps layers clean).
-The interfaces for these are defined in the Domain project but implemented in the Infrascture project which deals with persistence.
+- From a design perspective there is no direct exposure of DbContext to the other projects (keeps layers clean).
 
+The interfaces for these are defined in the Domain project but implemented in the Infrastrure project which deals with persistence.
 
 ### DDD 
 This has been used at a basic level and in not the full implementation - in most cases the complexity of a complete DDD solution is too much 
