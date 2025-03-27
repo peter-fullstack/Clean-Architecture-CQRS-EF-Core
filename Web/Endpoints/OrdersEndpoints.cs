@@ -4,7 +4,6 @@ using MediatR;
 
 namespace Web.Endpoints
 {
-    // Web/Endpoints/OrdersEndpoints.cs
     public static class OrdersEndpoints
     {
         public static void MapOrdersEndpoints(this WebApplication app)
