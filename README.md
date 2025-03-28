@@ -60,6 +60,9 @@ Domain project:
 
 ## Order Processing Flow
 
+The table below is for the new order data flow and the layers in the application that it goes through.
+
+
 | Step          | Component                          | Description       |
 |----------------|-------------------------------------|---------------------------|
 | Request  |**POST /orders**| Client sends JSON with OrderItemDto[]    |
@@ -67,3 +70,5 @@ Domain project:
 | Command |**CreateOrderCommand**| MediatR sends command to handler |
 | Persistence | **OrderRepository** | EF Core saves to database |
 | Response | **201 Created** | Returns new OrderId |
+
+## Automated Testing
