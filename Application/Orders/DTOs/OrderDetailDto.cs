@@ -1,6 +1,4 @@
-﻿using Application.DTOs;
-
-namespace Application.Orders.DTOs
+﻿namespace Application.Orders.DTOs
 {
     public record OrderDetailDto
     (

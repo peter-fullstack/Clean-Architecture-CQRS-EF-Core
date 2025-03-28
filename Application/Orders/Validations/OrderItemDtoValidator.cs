@@ -1,4 +1,4 @@
-﻿using Application.DTOs;
+﻿using Application.Orders.DTOs;
 using FluentValidation;
 
 namespace Application.Orders.Validations

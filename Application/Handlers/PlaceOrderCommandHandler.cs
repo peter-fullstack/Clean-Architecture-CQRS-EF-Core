@@ -1,6 +1,6 @@
 ﻿using Application.Commands;
+using Application.Exceptions;
 using Application.Interfaces;
-using Domain.Entities;
 using Domain.Interfaces;
 using MediatR;
 
@@ -17,20 +17,26 @@ public class PlaceOrderCommandHandler : IRequestHandler<PlaceOrderCommand, Guid>
 
     public async Task<Guid> Handle(PlaceOrderCommand cmd, CancellationToken ct)
     {
+        // 1. Validate the Product Ids
         var productIds = cmd.Items.Select(i => i.ProductId).ToList();
         var validProducts = await _productService.ValidateProductsAsync(productIds);
 
-        // 2. Map DTOs to domain entities
+        if (!validProducts.IsValid) 
+        {
+            throw new ApplicationValidationException($"ERROR: Validation for product Ids failed for new order.",  validProducts.Errors);
+        }
+
+        // 2. Map Command DTOs to domain entities
         var order = new Order
         {
             Id = Guid.NewGuid(),
-            Items = cmd.Items.Select(item => new OrderItem
-            {
-                ProductId = item.ProductId,
-                Quantity = item.Quantity,
-                Price = item.Price
-            }).ToList()
+            CustomerId = cmd.CustomerId
         };
+
+        foreach (var item in cmd.Items)
+        {
+            order.AddItem(item.ProductId, item.Quantity, item.Price);
+        }
 
         // 3. Persist
         await _uow.Repository<Order>().AddAsync(order);

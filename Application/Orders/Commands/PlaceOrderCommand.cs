@@ -1,4 +1,4 @@
-﻿using Application.DTOs;
+﻿using Application.Orders.DTOs;
 using MediatR;
 
 namespace Application.Commands;
