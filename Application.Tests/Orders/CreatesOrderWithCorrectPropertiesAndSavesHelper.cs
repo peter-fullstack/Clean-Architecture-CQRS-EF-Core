@@ -2,6 +2,7 @@
 using Application.Exceptions;
 using Application.Interfaces;
 using Application.Orders.DTOs;
+using Domain.Entities;
 using Domain.Interfaces;
 using Moq;
 

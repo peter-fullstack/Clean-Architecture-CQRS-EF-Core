@@ -1,4 +1,4 @@
-﻿using Domain.Entities;
+﻿namespace Domain.Entities;
 
 public class Order
 {
@@ -6,6 +6,7 @@ public class Order
     public Guid Id { get; set; }
     public Guid CustomerId { get; set; }
     public DateTime OrderDate { get; set; }
+
     public List<OrderItem> Items
     {
         get
@@ -19,11 +20,32 @@ public class Order
     {
         if (quantity <= 0)
             throw new Exception("Quantity must be positive");
-        _items.Add(new OrderItem
+
+        if (_items.Any(i => i.ProductId == productId))
         {
-            ProductId = productId, 
-            Quantity = quantity, 
-            Price = price 
-        });
+            var item = _items.FirstOrDefault(i => i.ProductId == productId);
+            if (item != null)
+            {
+                item.Price = price;
+                item.Quantity += quantity;
+            }
+        }
+        else
+        {
+            _items.Add(new OrderItem
+            {
+                ProductId = productId,
+                Quantity = quantity,
+                Price = price
+            });
+        }
+    }
+
+    public decimal OrderTotal
+    {
+        get
+        {
+            return _items.Sum(i => i.Quantity * i.Price);
+        }
     }
 }

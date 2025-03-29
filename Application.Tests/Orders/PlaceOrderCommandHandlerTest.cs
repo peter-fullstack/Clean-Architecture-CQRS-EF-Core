@@ -1,7 +1,7 @@
 ﻿using Application.Exceptions;
 using Moq;
 
-namespace Application.Tests.Orders;
+namespace Application.Tests.Orders.Commands;
 
 public class PlaceOrderCommandHandlerTests
 {
