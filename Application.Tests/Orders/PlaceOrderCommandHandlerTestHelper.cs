@@ -8,7 +8,7 @@ using Moq;
 
 namespace Application.Tests.Orders;
 
-public class CreatesOrderWithCorrectPropertiesAndSavesHelper
+public class PlaceOrderCommandHandlerTestHelper
 {
     public static (PlaceOrderCommandHandler handler, Mock<IUnitOfWork> mockUow) CreateTestHandler(
         IProductService productService)

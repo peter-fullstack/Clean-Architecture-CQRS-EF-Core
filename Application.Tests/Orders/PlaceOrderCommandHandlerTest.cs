@@ -11,18 +11,18 @@ public class PlaceOrderCommandHandlerTests
         // Arrange
         var customerId = Guid.NewGuid();
 
-        var successValidationResult = CreatesOrderWithCorrectPropertiesAndSavesHelper.CreateProductServiceValidationResult(true, new List<string>());
-        var productService = CreatesOrderWithCorrectPropertiesAndSavesHelper.CreateProductService(successValidationResult);
+        var successValidationResult = PlaceOrderCommandHandlerTestHelper.CreateProductServiceValidationResult(true, new List<string>());
+        var productService = PlaceOrderCommandHandlerTestHelper.CreateProductService(successValidationResult);
 
-        var orderItems = CreatesOrderWithCorrectPropertiesAndSavesHelper.CreateOrderItemList();
-        var command = CreatesOrderWithCorrectPropertiesAndSavesHelper.CreateValidOrderCommand(customerId, orderItems);
-        var (handler, mockUow) = CreatesOrderWithCorrectPropertiesAndSavesHelper.CreateTestHandler(productService.Object);
+        var orderItems = PlaceOrderCommandHandlerTestHelper.CreateOrderItemList();
+        var command = PlaceOrderCommandHandlerTestHelper.CreateValidOrderCommand(customerId, orderItems);
+        var (handler, mockUow) = PlaceOrderCommandHandlerTestHelper.CreateTestHandler(productService.Object);
 
         // Act
         var orderId = await handler.Handle(command, CancellationToken.None);
 
         // Assert
-        CreatesOrderWithCorrectPropertiesAndSavesHelper.VerifyOrderCreation(mockUow, orderId, command);
+        PlaceOrderCommandHandlerTestHelper.VerifyOrderCreation(mockUow, orderId, command);
     }
 
     [Fact]
@@ -31,15 +31,15 @@ public class PlaceOrderCommandHandlerTests
         // Arrange
         var errors = new List<string> { "Invalid SKU-123" };
         var customerId = Guid.NewGuid();
-        var successValidationResult = CreatesOrderWithCorrectPropertiesAndSavesHelper.CreateProductServiceValidationResult(false, errors);
-        var productService = CreatesOrderWithCorrectPropertiesAndSavesHelper.CreateProductService(successValidationResult);
+        var successValidationResult = PlaceOrderCommandHandlerTestHelper.CreateProductServiceValidationResult(false, errors);
+        var productService = PlaceOrderCommandHandlerTestHelper.CreateProductService(successValidationResult);
 
-        var orderItems = CreatesOrderWithCorrectPropertiesAndSavesHelper.CreateOrderItemList();
-        var command = CreatesOrderWithCorrectPropertiesAndSavesHelper.CreateValidOrderCommand(customerId, orderItems);
-        var (handler, mockUow) = CreatesOrderWithCorrectPropertiesAndSavesHelper.CreateTestHandler(productService.Object);
+        var orderItems = PlaceOrderCommandHandlerTestHelper.CreateOrderItemList();
+        var command = PlaceOrderCommandHandlerTestHelper.CreateValidOrderCommand(customerId, orderItems);
+        var (handler, mockUow) = PlaceOrderCommandHandlerTestHelper.CreateTestHandler(productService.Object);
 
         // Act and Assert
-        await CreatesOrderWithCorrectPropertiesAndSavesHelper.VerifyExceptionThrown<ApplicationValidationException>(
+        await PlaceOrderCommandHandlerTestHelper.VerifyExceptionThrown<ApplicationValidationException>(
             () => handler.Handle(command, CancellationToken.None),
             errors);
 
