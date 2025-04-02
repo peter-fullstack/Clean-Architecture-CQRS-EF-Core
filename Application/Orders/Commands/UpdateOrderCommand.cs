@@ -1,11 +1,11 @@
-﻿using MediatR;
+﻿using Application.Orders.DTOs;
+using MediatR;
 
-public record UpdateOrderStatusCommand : IRequest
-{
-    public Guid OrderId { get; init; }
-    public OrderStatus NewStatus { get; init; }
+namespace Application.Commands;
 
-    public class OrderStatus
-    {
-    }
-}
+public record UpdateOrderCommand
+(
+    Guid OrderId,
+    Guid CustomerId,
+    List<OrderItemDetailDto> Items
+) : IRequest<Guid>;

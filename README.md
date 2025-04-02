@@ -72,4 +72,14 @@ The table below is for the new order data flow and the layers in the application
 | Response | **201 Created** | Returns new OrderId |
 
 ## Automated Testing
-The 3 layer projects can be tested from the 
+
+### Unit Tests
+
+The 3 projects Application, Domain and Infrastructure can be tested using mocking and verification of the execution path taken by the code in a wide range of different senarios. 
+These are unit tests in the general sense, in that the testing is isolated to a single class without executing dependencies. These tests also examine the internal behavior of the 
+class being tested or what one engineer called 'inside out tests' - the code is being tested internally not just as a black box with inputs and outputs.
+
+### Integration Tests
+
+For the Web.Test project full end to end integration testing is done from the web endpoints through to the Sql Server database. To support this a docker container is used with an instance
+of Sql Server that the test can interact with. 
