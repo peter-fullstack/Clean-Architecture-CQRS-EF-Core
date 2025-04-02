@@ -81,5 +81,9 @@ class being tested or what one engineer called 'inside out tests' - the code is 
 
 ### Integration Tests
 
-For the Web.Test project full end to end integration testing is done from the web endpoints through to the Sql Server database. To support this a docker container is used with an instance
-of Sql Server that the test can interact with. 
+The Web.Test project is full end to end integration test that runs the Web endpoints and uses a Sql Container as the database. These tests exercise all the layers of the application 
+from the Web Api, Command and Query Handlers, the respository and the Sql database instance and back.
+
+Building up different types of automated testing helps to reduce the risk of breaking changes and errors getting beyond the developer environment and reduces discovery and resolution
+or issues.
+

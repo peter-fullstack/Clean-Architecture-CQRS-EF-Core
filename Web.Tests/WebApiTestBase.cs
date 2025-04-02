@@ -52,7 +52,7 @@ public abstract class WebApiTestBase : IAsyncLifetime
 
     public async Task DisposeAsync()
     {
-        //await _dbContainer.DisposeAsync();
-        //await DbContext.DisposeAsync();
+        await _dbContainer.DisposeAsync();
+        await DbContext.DisposeAsync();
     }
 }
